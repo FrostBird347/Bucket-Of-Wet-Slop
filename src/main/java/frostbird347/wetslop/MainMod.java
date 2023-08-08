@@ -1,22 +1,20 @@
 package frostbird347.wetslop;
 
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import frostbird347.wetslop.block.BlockManager;
+import frostbird347.wetslop.fluid.FluidManager;
+import frostbird347.wetslop.item.ItemManager;
 
 public class MainMod implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger("bucket-of-wet-slop");
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("onInitialize!");
+		// Register stuff
+		ItemManager.registerItems();
+		BlockManager.registerBlocks();
+		FluidManager.registerFluids();
 	}
 }

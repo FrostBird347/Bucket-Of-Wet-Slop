@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"values":
+	[
+		"bucket-of-wet-slop:wet_slop",
+		"bucket-of-wet-slop:wet_slop_flowing"
+	]
+}
