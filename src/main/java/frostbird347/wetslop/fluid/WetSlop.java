@@ -19,7 +19,11 @@ public abstract class WetSlop extends AbstractFluid {
 	//Allow it to be replaced by water and lava
 	@Override
 	protected boolean canBeReplacedWith(FluidState fluidState, BlockView blockView, BlockPos blockPos, Fluid fluid, Direction direction) {
-		if (fluid.matchesType(Fluids.WATER.getDefaultState().getFluid()) | fluid.matchesType(Fluids.LAVA.getDefaultState().getFluid())) {
+		boolean isWater = fluid.matchesType(Fluids.WATER.getDefaultState().getFluid());
+		if (isWater | fluid.matchesType(Fluids.LAVA.getDefaultState().getFluid())) {
+			if (isWater && this.isStill(fluidState)) {
+				return (direction.getName() != "down");
+			}
 			return true;
 		} else {
 			return false;
@@ -31,6 +35,15 @@ public abstract class WetSlop extends AbstractFluid {
 		return 15;
 	}
 
+	@Override
+	protected int getFlowSpeed(WorldView worldView) {
+		return 2;
+	}
+
+	@Override
+	protected int getLevelDecreasePerBlock(WorldView worldView) {
+		return 2;
+	}
 
 	@Override
 	public Fluid getStill() {
