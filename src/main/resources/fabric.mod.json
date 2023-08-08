@@ -3,23 +3,23 @@
 	"id": "bucket-of-wet-slop",
 	"version": "${version}",
 	"name": "Bucket Of Wet Slop",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "grins",
 	"authors": [
-		"Me!"
+		"FrostBird347"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/FrostBird347/Bucket-Of-Wet-Slop",
+		"sources": "https://github.com/FrostBird347/Bucket-Of-Wet-Slop"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/bucket-of-wet-slop/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"frostbird347.wetslop.ExampleMod"
+			"frostbird347.wetslop.MainMod"
 		],
 		"client": [
-			"frostbird347.wetslop.ExampleModClient"
+			"frostbird347.wetslop.MainModClient"
 		]
 	},
 	"mixins": [
@@ -36,6 +36,6 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"create": "*"
 	}
 }

@@ -3,7 +3,7 @@
 	"package": "frostbird347.wetslop.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"MainMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
