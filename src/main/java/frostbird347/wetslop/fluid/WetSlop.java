@@ -25,6 +25,7 @@ import net.minecraft.world.WorldView;
 
 public abstract class WetSlop extends AbstractFluid {
 
+	//Allow water to destroy wet slop fluids if the water is either coming from the side or if the wet slop fluid isn't a source block
 	@Override
 	protected boolean canBeReplacedWith(FluidState fluidState, BlockView blockView, BlockPos blockPos, Fluid fluid, Direction direction) {
 		boolean isWater = fluid.matchesType(Fluids.WATER.getDefaultState().getFluid());
@@ -38,6 +39,8 @@ public abstract class WetSlop extends AbstractFluid {
 		}
 	}
 
+	//Rarely play lava bubble sounds and show popping bubbles at the surface
+	//The rate is increased a when the block light level increases 
 	@Override
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		BlockPos abovePos = pos.up();
@@ -53,26 +56,25 @@ public abstract class WetSlop extends AbstractFluid {
         }
     }
 
+	//Use the fish bucket fill sound effect because that sounds the closest to a mix of slime and water
     @Override
     public Optional<SoundEvent> getBucketFillSound() {
         return Optional.of(SoundEvents.ITEM_BUCKET_FILL_FISH);
     }
 
-	@Override
-	public boolean matchesType(Fluid fluid) {
-		return fluid == getStill() || fluid == getFlowing();
-	}
-
+	//Faster than overworld lava, but slower than nether lava
 	@Override
 	public int getTickRate(WorldView worldView) {
 		return 15;
 	}
 
+	//Same as overworld lava
 	@Override
 	protected int getFlowSpeed(WorldView worldView) {
 		return 2;
 	}
 
+	//Same as overworld lava
 	@Override
 	protected int getLevelDecreasePerBlock(WorldView worldView) {
 		return 2;
