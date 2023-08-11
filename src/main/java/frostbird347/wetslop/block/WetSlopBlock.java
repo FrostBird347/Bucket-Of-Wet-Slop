@@ -4,6 +4,7 @@ import java.util.List;
 
 import frostbird347.wetslop.MainMod;
 import frostbird347.wetslop.damage.DamageManager;
+import frostbird347.wetslop.fluid.FluidManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.entity.Entity;
@@ -14,6 +15,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.mob.WaterCreatureEntity;
+import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.particle.ParticleTypes;
@@ -52,11 +54,9 @@ public class WetSlopBlock extends FluidBlock {
 
 			if (entity instanceof LivingEntity && !world.isClient && entity.isAlive()) {
 				boolean isUnderWater = entity.isSubmergedInWater();
-				boolean isWaterEntity = (entity instanceof WaterCreatureEntity);
+				boolean isWaterEntity = ((LivingEntity)entity).canBreatheInWater();
 				boolean hasWaterBreathing = ((LivingEntity)entity).hasStatusEffect(StatusEffects.WATER_BREATHING);
-				if (isWaterEntity) {
-					isWaterEntity = ((WaterCreatureEntity)entity).canBreatheInWater();
-				}
+				
 				if ((isWaterEntity && isUnderWater) || (isUnderWater && hasWaterBreathing)) {
 					if (entity.age % 20 == 0) {
 						entity.damage(DamageSource.DROWN, 0f);
@@ -84,14 +84,33 @@ public class WetSlopBlock extends FluidBlock {
 				}
 				
 				if (healthPercent < 0.75f) {
-					Integer testaaa = Math.round((827f * healthPercent) + 20f);
-					String testbbb = Float.toString(healthPercent) + "/" + Float.toString(-1.75f * healthPercent + 1.438f) + " : " + Float.toString(entity.age % testaaa) + "/" + Float.toString(testaaa);
-					List<ServerPlayerEntity> testccc = world.getServer().getPlayerManager().getPlayerList();
-					for (Integer i = 0; i < testccc.size(); i++) {
-						testccc.get(i).sendMessageToClient(Text.of(testbbb), false);
-					}
 					if (entity.age % Math.round((827 * healthPercent) + 20) == 0) {
 						entity.damage(DamageManager.SLOP_DAMAGE, (-1.75f * healthPercent + 1.438f));
+					}
+				}
+			}
+		} else {
+			LivingEntity target = ((SlimeEntity)entity).getTarget();
+			boolean isUnderWater = entity.isSubmergedInWater();
+
+			if (isUnderWater && entity.age % 20 == 0) {
+				entity.setAir(entity.getMaxAir());
+			}
+
+			if (target != null) {
+				Vec3d slimePos = entity.getPos();
+				Vec3d targetPos = target.getPos();
+				Vec3d targetPosSurface = new Vec3d(targetPos.getX(), slimePos.getY(), targetPos.getZ());
+
+				if (!isUnderWater) {
+					if (entity.age % 20 == 0 && targetPos.getY() < slimePos.getY() - 1 && slimePos.distanceTo(targetPosSurface) < 2) {
+						entity.addVelocity(0, -0.05, 0);
+					}
+				} else {
+					if (targetPos.getY() + (target.getHeight() / 2) < slimePos.getY()) {
+						entity.addVelocity(0, -0.02, 0);
+					} else {
+						//entity.addVelocity(0, 0.001, 0);
 					}
 				}
 			}
