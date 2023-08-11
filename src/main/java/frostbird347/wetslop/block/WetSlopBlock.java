@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.SlimeEntity;
@@ -28,6 +27,17 @@ public class WetSlopBlock extends FluidBlock {
 	//This is where all the horrible mechanics take place!
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+
+		//Don't do anything below if we are on a singleplayer creative world: I don't want certain people to immediately find out that the slop is sinister :)
+		//This will be removed in a future update
+		if ((world.getServer() == null || world.getServer().isSingleplayer()) && world.getPlayers().size() == 1 && world.getPlayers().get(0).isCreative()) {
+			return;
+		}
+
+		//Don't run on creative mode players
+		if (entity.isPlayer() && ((PlayerEntity)entity).isCreative()) {
+			return;
+		}
 
 		//Slimes are not debuffed by the slop
 		if (!(entity instanceof SlimeEntity)) {
@@ -61,7 +71,6 @@ public class WetSlopBlock extends FluidBlock {
 				//Prevent water breathing from helping
 				if (tryingToBreatheSlop) {
 					if (entity.age % 20 == 0) {
-						entity.damage(DamageSource.DROWN, 0f);
 						entity.damage(DamageManager.SLOP_DRINK_DAMAGE, 2f);
 					}
 				}
@@ -77,13 +86,13 @@ public class WetSlopBlock extends FluidBlock {
 					}
 
 					//If they are a player, give them some effects
-					boolean addExhaustion = (isMoving && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.HUNGER) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.WEAKNESS)));
-					if (entity.isPlayer() && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.BLINDNESS) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.MINING_FATIGUE)) || addExhaustion) {
+					boolean addExhaustion = (isMoving && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.MINING_FATIGUE) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.WEAKNESS)));
+					if (entity.isPlayer() && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.BLINDNESS) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.UNLUCK)) || addExhaustion) {
 						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0, true, false, false));
-						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 20, 1, true, false, false));
+						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 5, 0, true, false, false));
 						if (addExhaustion) {
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 40, 0, true, false, false));
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 80, 1, true, false, false));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 10, 1, true, false, false));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 40, 1, true, false, false));
 						}
 					}
 				}
