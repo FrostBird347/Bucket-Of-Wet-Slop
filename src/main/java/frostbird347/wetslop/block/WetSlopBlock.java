@@ -4,6 +4,7 @@ import frostbird347.wetslop.damage.DamageManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -49,11 +50,11 @@ public class WetSlopBlock extends FluidBlock {
 
 			//Methods of directly killing living entities
 			if (entity instanceof LivingEntity && !world.isClient && entity.isAlive()) {
-				//Get the current state of the entity
+				//Get the current state of the entity (Around once every 25 seconds an undead creature will be treated as a water breathing creature for a single tick, so some slop left out in the open won't get filled up with tons of trapped undead)
 				boolean isUnderWater = (entity.isSubmergedInWater() && world.getBlockState(new BlockPos((entity.getPos().add(0, entity.getEyeHeight(entity.getPose()), 0)))).getBlock().getTranslationKey().equals("block.bucket-of-wet-slop.wet_slop"));
-				boolean isWaterEntity = ((LivingEntity)entity).canBreatheInWater();
+				boolean isWaterEntity = ((LivingEntity)entity).canBreatheInWater() && (((LivingEntity)entity).getGroup() != EntityGroup.UNDEAD || Math.random() > 0.998);
 				boolean hasWaterBreathing = ((LivingEntity)entity).hasStatusEffect(StatusEffects.WATER_BREATHING);
-				boolean tryingToBreatheSlop = ((isWaterEntity && isUnderWater) || (isUnderWater && hasWaterBreathing));
+				boolean tryingToBreatheSlop = (isUnderWater && (isWaterEntity || hasWaterBreathing));
 				float healthPercent = ((LivingEntity)entity).getHealth() / ((LivingEntity)entity).getMaxHealth();
 				
 				//Prevent water breathing from helping
