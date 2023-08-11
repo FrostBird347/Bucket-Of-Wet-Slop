@@ -62,22 +62,22 @@ public abstract class WetSlop extends AbstractFluid {
         return Optional.of(SoundEvents.ITEM_BUCKET_FILL_FISH);
     }
 
-	//Faster than overworld lava, but slower than nether lava
+	//1.5-2x slower than overworld lava
 	@Override
 	public int getTickRate(WorldView worldView) {
-		return 15;
+		return (int)Math.round(Math.random() * 15) + 45;
 	}
 
-	//Same as overworld lava
+	//Search less than lava
 	@Override
 	protected int getFlowSpeed(WorldView worldView) {
-		return 2;
+		return 1;
 	}
 
-	//Same as overworld lava
+	//Spread less than lava
 	@Override
 	protected int getLevelDecreasePerBlock(WorldView worldView) {
-		return 2;
+		return 3;
 	}
 
 	@Override

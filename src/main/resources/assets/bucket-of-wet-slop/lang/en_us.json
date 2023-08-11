@@ -1,4 +1,5 @@
 {
+	"block.bucket-of-wet-slop.wet_slop": "Wet Slop",
 	"item.bucket-of-wet-slop.wet_slop_bucket": "Bucket of Wet Slop",
 	"death.attack.wet_slop": "%1$s wouldn't leave the wet slop",
 	"death.attack.wet_slop_drowning": "%1$s couldn't leave the wet slop",

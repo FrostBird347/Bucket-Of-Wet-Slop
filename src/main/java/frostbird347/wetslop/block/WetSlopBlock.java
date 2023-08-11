@@ -28,6 +28,7 @@ public class WetSlopBlock extends FluidBlock {
 	//This is where all the horrible mechanics take place!
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+
 		//Slimes are not debuffed by the slop
 		if (!(entity instanceof SlimeEntity)) {
 

@@ -5,20 +5,25 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 
 public class MainModClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
+  			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_still"));
+  			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_flowing"));
+  			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_overlay"));
+		});
 
-		//Reuse water texture, tint it green
 		FluidRenderHandlerRegistry.INSTANCE.register(FluidManager.WET_SLOP, FluidManager.WET_SLOP_FLOWING, new SimpleFluidRenderHandler(
-				new Identifier("minecraft:block/water_still"),
-				new Identifier("minecraft:block/water_flow"),
-				0x4AB464
+				new Identifier("bucket-of-wet-slop:block/wet_slop_still"),
+				new Identifier("bucket-of-wet-slop:block/wet_slop_flowing"),
+				new Identifier("bucket-of-wet-slop:block/wet_slop_overlay")
 		));
- 
-		//BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), FluidManager.WET_SLOP, FluidManager.WET_SLOP_FLOWING);
+		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), FluidManager.WET_SLOP, FluidManager.WET_SLOP_FLOWING);
 	}
 }
