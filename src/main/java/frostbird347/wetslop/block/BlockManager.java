@@ -10,7 +10,7 @@ import net.minecraft.util.registry.Registry;
 
 public class BlockManager {
  
-	public static final Block WET_SLOP_BLOCK = new WetSlopBlock(FluidManager.WET_SLOP, FabricBlockSettings.copy(Blocks.SLIME_BLOCK).mapColor(MapColor.BRIGHT_TEAL));
+	public static final Block WET_SLOP_BLOCK = new WetSlopBlock(FluidManager.WET_SLOP, FabricBlockSettings.copy(Blocks.WATER).mapColor(MapColor.BRIGHT_TEAL));
 
 	public static void registerBlocks() {
 		Registry.register(Registry.BLOCK, new Identifier("bucket-of-wet-slop", "wet_slop"), WET_SLOP_BLOCK);

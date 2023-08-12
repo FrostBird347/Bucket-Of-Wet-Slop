@@ -30,6 +30,7 @@ public class WetSlopBlock extends FluidBlock {
 
 		//Don't do anything below if we are on a singleplayer creative world: I don't want certain people to immediately find out that the slop is sinister :)
 		//This will be removed in a future update
+		//Until this code is removed, all releases will be set to alpha/pre-release
 		if ((world.getServer() == null || world.getServer().isSingleplayer()) && world.getPlayers().size() == 1 && world.getPlayers().get(0).isCreative()) {
 			return;
 		}

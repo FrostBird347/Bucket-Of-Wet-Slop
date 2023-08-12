@@ -3,13 +3,14 @@
 	"id": "bucket-of-wet-slop",
 	"version": "${version}",
 	"name": "Bucket Of Wet Slop",
-	"description": "grins",
+	"description": "The world is in turmoil and people are in pain.",
 	"authors": [
 		"FrostBird347"
 	],
 	"contact": {
-		"homepage": "https://github.com/FrostBird347/Bucket-Of-Wet-Slop",
-		"sources": "https://github.com/FrostBird347/Bucket-Of-Wet-Slop"
+		"homepage": "https://modrinth.com/mod/Bucket-Of-Wet-Slop",
+		"sources": "https://github.com/FrostBird347/Bucket-Of-Wet-Slop",
+		"issues": "https://github.com/FrostBird347/Bucket-Of-Wet-Slop/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/bucket-of-wet-slop/icon.png",
