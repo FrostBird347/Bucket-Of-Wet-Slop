@@ -1,0 +1,18 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "fluid": "bucket-of-wet-slop:wet_slop",
+      "amount": 81000
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:slime_block"
+    },
+    {
+      "fluid": "minecraft:water",
+      "amount": 81000
+    }
+  ]
+}
