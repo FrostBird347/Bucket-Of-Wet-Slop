@@ -88,7 +88,7 @@ public class WetSlopBlock extends FluidBlock {
 
 					//If they are a player, give them some effects
 					boolean addExhaustion = (isMoving && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.MINING_FATIGUE) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.WEAKNESS)));
-					if (entity.isPlayer() && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.BLINDNESS) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.UNLUCK)) || addExhaustion) {
+					if (entity.isPlayer() && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.BLINDNESS) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.UNLUCK) || addExhaustion)) {
 						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0, true, false, false));
 						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 5, 0, true, false, false));
 						if (addExhaustion) {

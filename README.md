@@ -5,7 +5,7 @@
 
 ### What does this mod do?
  This mod adds a Bucket of Wet Slop. That's it.<br>
-Absolutely prefectly safe slop that won't poision the surrounding environment!
+Absolutely perfectly safe slop that won't poison the surrounding environment!
 
 ### Where can I find this slop?
  The slop does not appear naturally in the world and instead must be crafted with a *Slime Block*, *Water Bucket* and *Empty Bucket*. The empty bucket is in the recipe because it's not worth writing an entire custom crafting system just to prevent the water bucket from leaving a second empty bucket behind.
