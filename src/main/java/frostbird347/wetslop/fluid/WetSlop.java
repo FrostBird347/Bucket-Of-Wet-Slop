@@ -47,20 +47,20 @@ public abstract class WetSlop extends AbstractFluid {
 		if (world.getBlockState(abovePos).isAir() && !world.getBlockState(abovePos).isOpaqueFullCube(world, abovePos)) {
 			int bubbleRate = Math.max(1, 16 - world.getLightLevel(LightType.BLOCK, pos));
 			if (random.nextInt(bubbleRate * 63) == 0) {
-                double x = (double)pos.getX() + random.nextDouble();
-                double y = (double)pos.getY() + random.nextDouble();
-                double z = (double)pos.getZ() + random.nextDouble();
-                world.addParticle(ParticleTypes.BUBBLE_POP, x, y + 0.125, z, 0.0, random.nextDouble() * 0.01f, 0.0);
-                world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.05f + random.nextFloat() * 0.25f, 0.001f + random.nextFloat() * 0.005f, true);
-            } 
-        }
-    }
+				double x = (double)pos.getX() + random.nextDouble();
+				double y = (double)pos.getY() + random.nextDouble();
+				double z = (double)pos.getZ() + random.nextDouble();
+				world.addParticle(ParticleTypes.BUBBLE_POP, x, y + 0.125, z, 0.0, random.nextDouble() * 0.01f, 0.0);
+				world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.05f + random.nextFloat() * 0.25f, 0.001f + random.nextFloat() * 0.005f, true);
+			} 
+		}
+	}
 
 	//Use the fish bucket fill sound effect because that sounds the closest to a mix of slime and water
-    @Override
-    public Optional<SoundEvent> getBucketFillSound() {
-        return Optional.of(SoundEvents.ITEM_BUCKET_FILL_FISH);
-    }
+	@Override
+	public Optional<SoundEvent> getBucketFillSound() {
+		return Optional.of(SoundEvents.ITEM_BUCKET_FILL_FISH);
+	}
 
 	//1.5-2x slower than overworld lava
 	@Override
@@ -84,46 +84,46 @@ public abstract class WetSlop extends AbstractFluid {
 	public Fluid getStill() {
 		return FluidManager.WET_SLOP;
 	}
- 
+
 	@Override
 	public Fluid getFlowing() {
 		return FluidManager.WET_SLOP_FLOWING;
 	}
- 
+
 	@Override
 	public Item getBucketItem() {
 		return ItemManager.WET_SLOP_BUCKET;
 	}
- 
+
 	@Override
 	protected BlockState toBlockState(FluidState fluidState) {
 		return BlockManager.WET_SLOP_BLOCK.getDefaultState().with(Properties.LEVEL_15, getBlockStateLevel(fluidState));
 	}
- 
+
 	public static class Flowing extends WetSlop {
 		@Override
 		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
 			super.appendProperties(builder);
 			builder.add(LEVEL);
 		}
- 
+
 		@Override
 		public int getLevel(FluidState fluidState) {
 			return fluidState.get(LEVEL);
 		}
- 
+
 		@Override
 		public boolean isStill(FluidState fluidState) {
 			return false;
 		}
 	}
- 
+
 	public static class Still extends WetSlop {
 		@Override
 		public int getLevel(FluidState fluidState) {
 			return 8;
 		}
- 
+
 		@Override
 		public boolean isStill(FluidState fluidState) {
 			return true;

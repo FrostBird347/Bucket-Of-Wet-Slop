@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
 public class ItemManager {
- 
+
 	public static final WetSlopBucket WET_SLOP_BUCKET = new WetSlopBucket(FluidManager.WET_SLOP, new FabricItemSettings().recipeRemainder(Items.BUCKET).maxCount(1).group(ItemGroup.MISC));
 
 	public static void registerItems() {

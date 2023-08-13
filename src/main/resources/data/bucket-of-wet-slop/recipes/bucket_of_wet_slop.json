@@ -1,18 +1,18 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "minecraft:water_bucket"
-        },
-        {
-            "item": "minecraft:bucket"
-        },
-        {
-            "item": "minecraft:slime_block"
-        }
-    ],
-    "result": {
-        "item": "bucket-of-wet-slop:wet_slop_bucket",
-        "count": 1
-    }
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:water_bucket"
+		},
+		{
+			"item": "minecraft:bucket"
+		},
+		{
+			"item": "minecraft:slime_block"
+		}
+	],
+	"result": {
+		"item": "bucket-of-wet-slop:wet_slop_bucket",
+		"count": 1
+	}
 }

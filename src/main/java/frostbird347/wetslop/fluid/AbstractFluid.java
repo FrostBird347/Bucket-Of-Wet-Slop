@@ -21,7 +21,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 	public boolean matchesType(Fluid fluid) {
 		return fluid == getStill() || fluid == getFlowing();
 	}
- 
+
 	/**
 	 * @return whether the fluid is infinite like water
 	 */
@@ -29,7 +29,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 	protected boolean isInfinite() {
 		return false;
 	}
- 
+
 	/**
 	 * Perform actions when the fluid flows into a replaceable block. Water drops
 	 * the block's loot table. Lava plays the "block.lava.extinguish" sound.
@@ -39,7 +39,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 		final BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
 		Block.dropStacks(state, world, pos, blockEntity);
 	}
- 
+
 	/**
 	 * Lava returns true if it's FluidState is above a certain height and the
 	 * Fluid is Water.
@@ -50,7 +50,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 	protected boolean canBeReplacedWith(FluidState fluidState, BlockView blockView, BlockPos blockPos, Fluid fluid, Direction direction) {
 		return false;
 	}
- 
+
 	/**
 	 * Possibly related to the distance checks for flowing into nearby holes?
 	 * Water returns 4. Lava returns 2 in the Overworld and 4 in the Nether.
@@ -59,7 +59,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 	protected int getFlowSpeed(WorldView worldView) {
 		return 4;
 	}
- 
+
 	/**
 	 * Water returns 1. Lava returns 2 in the Overworld and 1 in the Nether.
 	 */
@@ -67,7 +67,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 	protected int getLevelDecreasePerBlock(WorldView worldView) {
 		return 1;
 	}
- 
+
 	/**
 	 * Water returns 5. Lava returns 30 in the Overworld and 10 in the Nether.
 	 */
@@ -75,7 +75,7 @@ public abstract class AbstractFluid extends FlowableFluid {
 	public int getTickRate(WorldView worldView) {
 		return 5;
 	}
- 
+
 	/**
 	 * Water and Lava both return 100.0F.
 	 */

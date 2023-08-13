@@ -9,7 +9,7 @@ import net.minecraft.block.MapColor;
 import net.minecraft.util.registry.Registry;
 
 public class BlockManager {
- 
+
 	public static final Block WET_SLOP_BLOCK = new WetSlopBlock(FluidManager.WET_SLOP, FabricBlockSettings.copy(Blocks.WATER).mapColor(MapColor.BRIGHT_TEAL));
 
 	public static void registerBlocks() {

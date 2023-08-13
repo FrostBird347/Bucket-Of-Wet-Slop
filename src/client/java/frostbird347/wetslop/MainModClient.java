@@ -15,9 +15,9 @@ public class MainModClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		//Setup slop rendering
 		ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
-  			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_still"));
-  			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_flowing"));
-  			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_overlay"));
+			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_still"));
+			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_flowing"));
+			registry.register(new Identifier("bucket-of-wet-slop:block/wet_slop_overlay"));
 		});
 		FluidRenderHandlerRegistry.INSTANCE.register(FluidManager.WET_SLOP, FluidManager.WET_SLOP_FLOWING, new SimpleFluidRenderHandler(
 				new Identifier("bucket-of-wet-slop:block/wet_slop_still"),

@@ -1,6 +1,5 @@
 {
-    "textures": {
-        "particle": "bucket-of-wet-slop:block/wet_slop_flowing"
-    }
+	"textures": {
+		"particle": "bucket-of-wet-slop:block/wet_slop_flowing"
+	}
 }
-
