@@ -17,6 +17,6 @@ Absolutely prefectly safe slop that won't poision the surrounding environment!
 The mod also supports Create:<br>
 ![Create Support](./media/CreateTank.png)<br>
 
-https://github.com/FrostBird347/Bucket-Of-Wet-Slop/assets/39435218/952adb6f-d582-4920-9b1a-b0facc75c5ef
+https://github.com/FrostBird347/Bucket-Of-Wet-Slop/assets/39435218/5a6bcf0c-7fa0-4a88-afdc-1f76aaf2e552
 
-https://github.com/FrostBird347/Bucket-Of-Wet-Slop/assets/39435218/fc729c98-0332-4d88-a264-038e6c5c4fec
+https://github.com/FrostBird347/Bucket-Of-Wet-Slop/assets/39435218/294e7392-160b-46d0-b4b5-e200aef3e43a
