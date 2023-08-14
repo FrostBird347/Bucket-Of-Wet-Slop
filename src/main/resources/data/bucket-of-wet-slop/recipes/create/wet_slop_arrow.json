@@ -1,0 +1,37 @@
+{
+	"type": "create:filling",
+	"ingredients": [
+		{
+			"fluid": "bucket-of-wet-slop:wet_slop",
+			"amount": 2700
+		},
+		{
+			"item": "minecraft:arrow"
+		}
+	],
+	"results": [
+		{
+			"item": "minecraft:tipped_arrow",
+			"nbt": {
+				"CustomPotionEffects": [
+					{
+						"Id":9,
+						"Duration": 100
+					},
+					{
+						"Id":17,
+						"Duration": 50
+					},
+					{
+						"Id":19,
+						"Duration":50
+					}
+				],
+				"CustomPotionColor":1612143,
+				"display":{
+					"Name":"[{\"text\":\"Arrow of Slop\",\"italic\":false}]"
+				}
+			}
+		}
+	]
+}
