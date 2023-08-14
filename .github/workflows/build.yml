@@ -6,12 +6,9 @@
 name: build
 on: 
   release:
-    type: 
-      - 'created'
+    types: [published]
   pull_request:
-    branches:
-      - 'main'
-      - '**'
+    types: [opened, reopened, synchronize]
 jobs:
   build:
     strategy:
