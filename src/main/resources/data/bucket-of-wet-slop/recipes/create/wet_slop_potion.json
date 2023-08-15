@@ -3,33 +3,37 @@
 	"ingredients": [
 		{
 			"fluid": "bucket-of-wet-slop:wet_slop",
-			"amount": 2700
+			"amount": 27000
 		},
 		{
-			"item": "minecraft:arrow"
+			"item": "minecraft:glass_bottle"
 		}
 	],
 	"results": [
 		{
-			"item": "minecraft:tipped_arrow",
+			"item": "minecraft:potion",
 			"nbt": {
 				"CustomPotionEffects": [
 					{
 						"Id": 9,
-						"Duration": 100
+						"Duration": 200
 					},
 					{
 						"Id": 17,
-						"Duration": 50
+						"Duration": 20
+					},
+					{
+						"Id": 18,
+						"Duration": 100
 					},
 					{
 						"Id": 19,
-						"Duration": 50
+						"Duration": 20
 					}
 				],
 				"CustomPotionColor": 1612143,
 				"display": {
-					"Name": "[{\"text\":\"Arrow of Wet Slop\",\"italic\":false}]"
+					"Name":"[{\"text\":\"Bottle of Wet Slop\",\"italic\":false}]"
 				}
 			}
 		}
