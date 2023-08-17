@@ -13,6 +13,7 @@
 		{
 			"item": "minecraft:potion",
 			"nbt": {
+				"Potion": "minecraft:mundane",
 				"CustomPotionEffects": [
 					{
 						"Id": 9,
