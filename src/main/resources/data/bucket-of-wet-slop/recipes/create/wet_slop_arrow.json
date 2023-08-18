@@ -13,6 +13,7 @@
 		{
 			"item": "minecraft:tipped_arrow",
 			"nbt": {
+				"Potion": "bucket-of-wet-slop:slop_exposure",
 				"CustomPotionEffects": [
 					{
 						"Id": 9,

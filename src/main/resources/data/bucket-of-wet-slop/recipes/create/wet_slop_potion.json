@@ -13,7 +13,7 @@
 		{
 			"item": "minecraft:potion",
 			"nbt": {
-				"Potion": "minecraft:mundane",
+				"Potion": "bucket-of-wet-slop:slop_exposure",
 				"CustomPotionEffects": [
 					{
 						"Id": 9,
@@ -29,7 +29,7 @@
 					},
 					{
 						"Id": 19,
-						"Duration": 20
+						"Duration": 40
 					}
 				],
 				"CustomPotionColor": 1612143,

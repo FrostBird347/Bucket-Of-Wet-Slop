@@ -1,7 +1,13 @@
 {
 	"block.bucket-of-wet-slop.wet_slop": "Wet Slop",
 	"item.bucket-of-wet-slop.wet_slop_bucket": "Bucket of Wet Slop",
-	"death.attack.wet_slop": "%1$s wouldn't leave the wet slop",
-	"death.attack.wet_slop_drowning": "%1$s couldn't leave the wet slop",
-	"death.attack.wet_slop_drinking": "%1$s's respiratory system was clogged up with wet slop"
+	"death.attack.wet_slop_drinking": "%1$s's respiratory system was clogged up with wet slop",
+	"death.attack.wet_slop_drowning": "%1$s never returned from the slop",
+	"death.attack.wet_slop": "%1$s wouldn't leave the slop",
+	"death.attack.wet_slop_exposure": "%1$s didn't clean their slop covered wounds",
+	"effect.bucket-of-wet-slop.slop_exposure": "Sloppified",
+	"item.minecraft.potion.effect.slop_exposure": "Bottle of Wet Slop",
+	"item.minecraft.splash_potion.effect.slop_exposure": "Splash Bottle of Wet Slop",
+	"item.minecraft.tipped_arrow.effect.slop_exposure": "Arrow of Wet Slop",
+	"item.minecraft.lingering_potion.effect.slop_exposure": "Lingering Bottle of Wet Slop"
 }
