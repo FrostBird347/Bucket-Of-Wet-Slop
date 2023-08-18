@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -30,7 +29,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import frostbird347.wetslop.effect.EffectManager;
 
 @Mixin(GlassBottleItem.class)
@@ -43,13 +41,13 @@ public class GlassBottleItemMixin extends Item {
 	//Reimplement simplified vanilla bottle interaction code at the start to bypass the water check and hopefully keep it a little more compatible with other mods
 	//Does make slop take preference over dragon's breath but who cares about that
 	@Inject(at = @At("HEAD"), method = "use", cancellable = true)
-	private void checkFluid(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> info) {
+	private void checkFluid(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> callback) {
 		BlockHitResult hitResult = GlassBottleItem.raycast(world, user, RaycastContext.FluidHandling.SOURCE_ONLY);
 		if (((HitResult)hitResult).getType() == HitResult.Type.BLOCK) {
 			BlockPos blockPos = hitResult.getBlockPos();
-            if (world.canPlayerModifyAt(user, blockPos) && world.getBlockState(blockPos).getBlock().getTranslationKey().equals("block.bucket-of-wet-slop.wet_slop")) {
-                world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0f, 1.0f);
-                world.emitGameEvent((Entity)user, GameEvent.FLUID_PICKUP, blockPos);
+			if (world.canPlayerModifyAt(user, blockPos) && world.getBlockState(blockPos).getBlock().getTranslationKey().equals("block.bucket-of-wet-slop.wet_slop")) {
+				world.playSound(user, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0f, 1.0f);
+				world.emitGameEvent((Entity)user, GameEvent.FLUID_PICKUP, blockPos);
 
 				//Reimplement vanilla fill code below because it's protected
 				user.incrementStat(Stats.USED.getOrCreateStat(((GlassBottleItem)(Object)this)));
@@ -60,8 +58,8 @@ public class GlassBottleItemMixin extends Item {
 				ItemStack filledBottle = PotionUtil.setCustomPotionEffects(PotionUtil.setPotion(new ItemStack(Items.POTION), EffectManager.SLOPPIFIED_POTION), drinkEffects);
 				filledBottle.getOrCreateNbt().putInt("CustomPotionColor", PotionUtil.getColor(EffectManager.SLOPPIFIED_POTION));
 
-                info.setReturnValue(TypedActionResult.success(ItemUsage.exchangeStack(user.getStackInHand(hand), user, filledBottle), world.isClient()));
-            }
+				callback.setReturnValue(TypedActionResult.success(ItemUsage.exchangeStack(user.getStackInHand(hand), user, filledBottle), world.isClient()));
+			}
 		}
 	}
 }

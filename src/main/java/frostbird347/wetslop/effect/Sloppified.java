@@ -1,6 +1,5 @@
 package frostbird347.wetslop.effect;
 
-import frostbird347.wetslop.MainMod;
 import frostbird347.wetslop.damage.DamageManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -25,7 +24,7 @@ public class Sloppified extends StatusEffect {
 			//Don't run when they are in the slop or water (allow water that if they tried to breathe the slop), or if they are a slime
 			if ((!entity.isWet() || (amplifier == 7 && !(entity.isSubmergedInWater() && entity.world.getBlockState(new BlockPos((entity.getPos().add(0, entity.getEyeHeight(entity.getPose()), 0)))).getBlock().getTranslationKey().equals("block.bucket-of-wet-slop.wet_slop")))) && !(entity instanceof SlimeEntity)) {
 				//Calculate strength of effect
-				int duration = entity.getStatusEffect(EffectManager.SLOPPIFIED).getDuration();
+				//int duration = entity.getStatusEffect(EffectManager.SLOPPIFIED).getDuration();
 				float healthPercent = ((LivingEntity)entity).getHealth() / ((LivingEntity)entity).getMaxHealth();
 				if (amplifier < 8) {
 					healthPercent *= (0.01 * Math.pow(amplifier, 2) - 0.27 * amplifier + 1.5);
@@ -41,8 +40,6 @@ public class Sloppified extends StatusEffect {
 						entity.damage(DamageManager.SLOPPIFIED_DAMAGE, (-1.75f * healthPercent + 1.438f));
 					}
 				}
-
-				MainMod.LOGGER.info(Float.toString(healthPercent) + "	:	" + Double.toString(amplifier) + "	:	" + Integer.toString(duration));
 			}
 		}
 	}
