@@ -90,11 +90,11 @@ public class WetSlopBlock extends FluidBlock {
 					//If they are a player, give them some effects
 					boolean addExhaustion = (isMoving && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.MINING_FATIGUE) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.WEAKNESS)));
 					if (entity.isPlayer() && (!((LivingEntity)entity).hasStatusEffect(StatusEffects.BLINDNESS) || !((LivingEntity)entity).hasStatusEffect(StatusEffects.UNLUCK) || addExhaustion)) {
-						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0, false, false, false));
+						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 51, 0, false, false, false));
 						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 5, 0, false, false, false));
 						if (addExhaustion) {
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 10, 1, false, false, false));
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 40, 1, false, false, false));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 11, 1, false, false, false));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 41, 1, false, false, false));
 						}
 					}
 				}
@@ -108,13 +108,13 @@ public class WetSlopBlock extends FluidBlock {
 				}
 
 				if (entity.isPlayer() && entity.isAlive()) {
-					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 600, 0, false, true, true));
+					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 601, 0, false, true, true));
 					if (isUnderWater) {
-					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1200, 0, false, true, true));
-						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 600, 1, false, true, true));
+					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1201, 0, false, true, true));
+						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 601, 1, false, true, true));
 						if (tryingToBreatheSlop) {
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 300, 3, false, true, true));
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 150, 7, false, true, true));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 301, 3, false, true, true));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 151, 7, false, true, true));
 						}
 					}
 				}
