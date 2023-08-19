@@ -21,6 +21,8 @@ repositories {
 loom {
     splitEnvironmentSourceSets()
 
+	accessWidenerPath = file("src/main/resources/bucket-of-wet-slop.accesswidener")
+
 	mods {
 		"bucket-of-wet-slop" {
 			sourceSet sourceSets.main

@@ -10,6 +10,7 @@ import frostbird347.wetslop.item.ItemManager;
 
 public class MainMod implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("bucket-of-wet-slop");
+	public static int CLIENT_SLOP_AGE = -100;
 
 	@Override
 	public void onInitialize() {

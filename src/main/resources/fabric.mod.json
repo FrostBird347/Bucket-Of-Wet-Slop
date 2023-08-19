@@ -30,6 +30,7 @@
 			"environment": "client"
 		}
 	],
+	"accessWidener" : "bucket-of-wet-slop.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.14.22",
 		"minecraft": "~1.19.2",
