@@ -21,7 +21,11 @@
 					},
 					{
 						"Id": 17,
-						"Duration": 50
+						"Duration": 40
+					},
+					{
+						"Id": 18,
+						"Duration": 160
 					},
 					{
 						"Id": 19,

@@ -53,8 +53,8 @@ public class GlassBottleItemMixin extends Item {
 				user.incrementStat(Stats.USED.getOrCreateStat(((GlassBottleItem)(Object)this)));
 				
 				//However add custom effects to the potion that will be removed when it's converted to a splash
-				//Custom effects last for half as long as the create recipe, so there is still a reason to use up some of the liquid
-				Collection<StatusEffectInstance> drinkEffects = List.of(new StatusEffectInstance(StatusEffects.NAUSEA, 100), new StatusEffectInstance(StatusEffects.HUNGER, 10), new StatusEffectInstance(StatusEffects.WEAKNESS, 50), new StatusEffectInstance(StatusEffects.SATURATION, 1));
+				//Custom effects are weaker than the create recipe, so there is still a reason to use up some of the liquid in create
+				Collection<StatusEffectInstance> drinkEffects = List.of(new StatusEffectInstance(StatusEffects.NAUSEA, 5*20), new StatusEffectInstance(StatusEffects.HUNGER, 2*20), new StatusEffectInstance(StatusEffects.WEAKNESS, 15*20));
 				ItemStack filledBottle = PotionUtil.setCustomPotionEffects(PotionUtil.setPotion(new ItemStack(Items.POTION), EffectManager.SLOPPIFIED_POTION), drinkEffects);
 				filledBottle.getOrCreateNbt().putInt("CustomPotionColor", PotionUtil.getColor(EffectManager.SLOPPIFIED_POTION));
 

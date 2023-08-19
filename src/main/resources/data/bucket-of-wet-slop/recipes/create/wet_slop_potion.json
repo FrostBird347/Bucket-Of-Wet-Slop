@@ -13,7 +13,7 @@
 		{
 			"item": "minecraft:potion",
 			"nbt": {
-				"Potion": "bucket-of-wet-slop:slop_exposure",
+				"Potion": "bucket-of-wet-slop:boosted_slop_exposure",
 				"CustomPotionEffects": [
 					{
 						"Id": 9,
@@ -21,11 +21,11 @@
 					},
 					{
 						"Id": 17,
-						"Duration": 20
+						"Duration": 40
 					},
 					{
 						"Id": 18,
-						"Duration": 100
+						"Duration": 300
 					},
 					{
 						"Id": 23,

@@ -108,13 +108,13 @@ public class WetSlopBlock extends FluidBlock {
 				}
 
 				if (entity.isPlayer() && entity.isAlive()) {
-					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 601, 0, false, true, true));
+					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1+40*20, 0, false, true, true));
 					if (isUnderWater) {
-					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1201, 0, false, true, true));
-						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 601, 1, false, true, true));
+					((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1+75*20, 0, false, true, true));
+						((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1+40*20, 1, false, true, true));
 						if (tryingToBreatheSlop) {
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 301, 3, false, true, true));
-							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 151, 7, false, true, true));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, 1+15*20, 3, false, true, true));
+							((LivingEntity)entity).addStatusEffect(new StatusEffectInstance(EffectManager.SLOPPIFIED, (int)(1+7.5*20), 7, false, true, true));
 						}
 					}
 				}

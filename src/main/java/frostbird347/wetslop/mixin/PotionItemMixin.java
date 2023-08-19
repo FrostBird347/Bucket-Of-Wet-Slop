@@ -23,7 +23,8 @@ public class PotionItemMixin extends Item {
 	//	- It just doesn't clearly look like a bottle of slop, it looks like a potion with the glint on. This is an issue water and honey bottles don't have, because they don't have a glint.
 	@Inject(at = @At("HEAD"), method = "hasGlint", cancellable = true)
 	private void hideSlopGlint(ItemStack stack, CallbackInfoReturnable<Boolean> callback) {
-		if (!super.hasGlint(stack) && stack.getOrCreateNbt().getString("Potion").equals("bucket-of-wet-slop:slop_exposure")) {
+		String potionType = stack.getOrCreateNbt().getString("Potion");
+		if (!super.hasGlint(stack) && potionType.equals("bucket-of-wet-slop:slop_exposure") || potionType.equals("bucket-of-wet-slop:boosted_slop_exposure")) {
 			callback.setReturnValue(false);
 		}
 	}
