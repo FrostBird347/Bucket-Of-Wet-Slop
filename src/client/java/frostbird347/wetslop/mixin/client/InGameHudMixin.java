@@ -3,8 +3,6 @@ package frostbird347.wetslop.mixin.client;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.PotionUtil;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,7 +21,7 @@ public class InGameHudMixin {
 		//If the saved age is somehow significantly larger than the player's real age then they might have respawned or something else weird might have happened.
 		//It should be reset in this scenario to prevent weird behaviour
 		if (player.age + 10 < MainMod.CLIENT_SLOP_AGE) {
-			MainMod.LOGGER.warn("CLIENT_SLOP_AGE was larger than the player's own age!");
+			MainMod.LOGGER.warn("CLIENT_SLOP_AGE was larger than the player's own age! (You should only see this message when respawning or changing dimensions/servers)");
 			MainMod.CLIENT_SLOP_AGE = -1;
 		}
 		SHOULD_CHANGE_HEARTS = player.hasStatusEffect(EffectManager.SLOPPIFIED) && (!player.isWet() || player.age - 10 < MainMod.CLIENT_SLOP_AGE);
