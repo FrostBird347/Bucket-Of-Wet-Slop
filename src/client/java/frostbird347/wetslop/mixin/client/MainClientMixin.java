@@ -9,9 +9,11 @@ import frostbird347.wetslop.MainMod;
 
 @Mixin(MinecraftClient.class)
 public class MainClientMixin {
-	@Inject(at = @At("HEAD"), method = "setWorld")
-	private void changeWorld(CallbackInfo info) {
-		//Update the stored UUID when joining a world instead of on game launch because there are mods that allow users to switch accounts ingame
-		MainMod.CLIENT_UUID = ((MinecraftClient)(Object)this).player.getUuid();
+	@Inject(at = @At("HEAD"), method = "tick")
+	private void updateUUID(CallbackInfo info) {
+		//Update the stored UUID every 5 seconds instead of on game launch because there are mods that allow users to switch accounts ingame
+		if (((MinecraftClient)(Object)this).player != null && ((MinecraftClient)(Object)this).player.age % (20*5) == 0) {
+			MainMod.CLIENT_UUID = ((MinecraftClient)(Object)this).player.getUuid();
+		}
 	}
 }
