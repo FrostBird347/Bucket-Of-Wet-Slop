@@ -7,7 +7,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+
 import frostbird347.wetslop.MainMod;
+import frostbird347.wetslop.MainModClient;
 import frostbird347.wetslop.effect.EffectManager;
 
 @Mixin(InGameHud.class)
@@ -37,7 +41,13 @@ public class InGameHudMixin {
 	@Inject(at = @At("HEAD"), method = "drawHeart", cancellable = true)
 	private void drawSlopHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo callback) {
 		if (SHOULD_CHANGE_HEARTS && type.equals(InGameHud.HeartType.NORMAL)) {
-			((InGameHud)(Object)this).drawTexture(matrices, x, y, InGameHud.HeartType.ABSORBING.getU(halfHeart, blinking), v, 9, 9);;
+
+			//Store the current texture and temporarilly replace it when rendering the custom hearts
+			int oldTexture = RenderSystem.getShaderTexture(0);
+			RenderSystem.setShaderTexture(0, MainModClient.SLOP_HEART_TEXTURE);
+			//I am too lazy to change the texture coordinates, the slop heart texture has the hearts at the same position as the regular hearts
+			((InGameHud)(Object)this).drawTexture(matrices, x, y, type.getU(halfHeart, blinking), v, 9, 9);
+			RenderSystem.setShaderTexture(0, oldTexture);
 			callback.cancel();
 		}
 	}

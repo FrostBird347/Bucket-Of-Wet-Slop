@@ -11,6 +11,8 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 
 public class MainModClient implements ClientModInitializer {
+	public static final Identifier SLOP_HEART_TEXTURE = new Identifier("bucket-of-wet-slop:textures/gui/slop_heart.png");
+
 	@Override
 	public void onInitializeClient() {
 		//Setup slop rendering
