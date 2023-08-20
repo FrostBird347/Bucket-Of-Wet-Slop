@@ -41,7 +41,7 @@ public class Sloppified extends StatusEffect {
 				//Deal damage at a rate and level determined by how little health the entity has left, getting faster towards the end
 				if (healthPercent < 0.75f) {
 					                                                                //Don't deal damage if the entity is about to die from breathing slop
-					if (entity.age % Math.round((827 * healthPercent) + 20) == 0 && !(amplifier == 7 && entity.getAir() > -19 && entity.getHealth() <= 2f)) {
+					if (entity.age % Math.round((827 * healthPercent) + 10) == 0 && !(amplifier == 7 && entity.getAir() > -19 && entity.getHealth() <= 2f)) {
 						entity.damage(DamageManager.SLOPPIFIED_DAMAGE, (-1.75f * healthPercent + 1.438f));
 					}
 				}

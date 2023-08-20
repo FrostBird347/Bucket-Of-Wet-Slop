@@ -24,11 +24,11 @@ public class InGameHudMixin {
 	private void beginHealthBarRender(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo info) {
 		//If the saved age is somehow significantly larger than the player's real age then they might have respawned or something else weird might have happened.
 		//It should be reset in this scenario to prevent weird behaviour
-		if (player.age + 10 < MainModClient.SLOP_AGE) {
+		if (player.age + 10 < MainMod.CLIENT_SLOP_AGE) {
 			MainMod.LOGGER.warn("CLIENT_SLOP_AGE was larger than the player's own age! (You should only see this message when respawning or changing dimensions/servers)");
-			MainModClient.SLOP_AGE = -1;
+			MainMod.CLIENT_SLOP_AGE = -1;
 		}
-		SHOULD_CHANGE_HEARTS = player.hasStatusEffect(EffectManager.SLOPPIFIED) && (!player.isWet() || player.age - 10 < MainModClient.SLOP_AGE);
+		SHOULD_CHANGE_HEARTS = player.hasStatusEffect(EffectManager.SLOPPIFIED) && (!player.isWet() || player.age - 10 < MainMod.CLIENT_SLOP_AGE);
 	}
 	
 	//Clear this flag so anything else calling drawHeart() won't be affected by the player's slop effect

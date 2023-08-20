@@ -12,7 +12,6 @@ import net.minecraft.util.Identifier;
 
 public class MainModClient implements ClientModInitializer {
 	public static final Identifier SLOP_HEART_TEXTURE = new Identifier("bucket-of-wet-slop:textures/gui/slop_heart.png");
-	public static int SLOP_AGE = -100;
 
 	@Override
 	public void onInitializeClient() {
