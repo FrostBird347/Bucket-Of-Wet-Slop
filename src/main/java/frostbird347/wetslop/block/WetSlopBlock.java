@@ -1,6 +1,6 @@
 package frostbird347.wetslop.block;
 
-import frostbird347.wetslop.MainMod;
+import frostbird347.wetslop.MainModClient;
 import frostbird347.wetslop.damage.DamageManager;
 import frostbird347.wetslop.effect.EffectManager;
 import net.minecraft.block.BlockState;
@@ -45,7 +45,7 @@ public class WetSlopBlock extends FluidBlock {
 
 		//Update the counter if it's the client player
 		if (world.isClient && entity.isPlayer() && ((PlayerEntity)entity).getUuid().equals(MinecraftClient.getInstance().player.getUuid())) {
-			MainMod.CLIENT_SLOP_AGE = entity.age;
+			MainModClient.SLOP_AGE = entity.age;
 		}
 
 		//Slimes are not debuffed by the slop

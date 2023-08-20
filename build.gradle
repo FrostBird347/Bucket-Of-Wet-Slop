@@ -73,6 +73,9 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
+
+	//Don't include .xcf files in the exported jar
+	processResources.exclude('*.xcf')
 }
 
 // configure the maven publication

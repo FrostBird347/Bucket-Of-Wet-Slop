@@ -24,11 +24,11 @@ public class InGameHudMixin {
 	private void beginHealthBarRender(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo info) {
 		//If the saved age is somehow significantly larger than the player's real age then they might have respawned or something else weird might have happened.
 		//It should be reset in this scenario to prevent weird behaviour
-		if (player.age + 10 < MainMod.CLIENT_SLOP_AGE) {
+		if (player.age + 10 < MainModClient.SLOP_AGE) {
 			MainMod.LOGGER.warn("CLIENT_SLOP_AGE was larger than the player's own age! (You should only see this message when respawning or changing dimensions/servers)");
-			MainMod.CLIENT_SLOP_AGE = -1;
+			MainModClient.SLOP_AGE = -1;
 		}
-		SHOULD_CHANGE_HEARTS = player.hasStatusEffect(EffectManager.SLOPPIFIED) && (!player.isWet() || player.age - 10 < MainMod.CLIENT_SLOP_AGE);
+		SHOULD_CHANGE_HEARTS = player.hasStatusEffect(EffectManager.SLOPPIFIED) && (!player.isWet() || player.age - 10 < MainModClient.SLOP_AGE);
 	}
 	
 	//Clear this flag so anything else calling drawHeart() won't be affected by the player's slop effect
@@ -37,10 +37,12 @@ public class InGameHudMixin {
 		SHOULD_CHANGE_HEARTS = false;
 	}
 
-	//Render custom heart graphics when the player is either in slop or has the slop effect
+	//Render custom heart graphics when the player has the slop effect and isn't in water
 	@Inject(at = @At("HEAD"), method = "drawHeart", cancellable = true)
 	private void drawSlopHeart(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo callback) {
-		if (SHOULD_CHANGE_HEARTS && type.equals(InGameHud.HeartType.NORMAL)) {
+		
+		//If other mods didn't exist, I would have just used !(type == InGameHud.HeartType.CONTAINER)
+		if (SHOULD_CHANGE_HEARTS && (type == InGameHud.HeartType.NORMAL || type == InGameHud.HeartType.POISIONED || type == InGameHud.HeartType.ABSORBING || type == InGameHud.HeartType.WITHERED || type == InGameHud.HeartType.FROZEN)) {
 
 			//Store the current texture and temporarilly replace it when rendering the custom hearts
 			int oldTexture = RenderSystem.getShaderTexture(0);
